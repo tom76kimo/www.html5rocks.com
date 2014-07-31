@@ -11,32 +11,32 @@
 
 <p>Okay. Okay. 就不拖大家的時間了，我很高興向大家宣佈<a href="http://wiki.ecmascript.org/doku.php?id=harmony:observe">Object.observe() </a>已經可以在<a href="http://www.chromestatus.com/features/6147094632988672">Chrome 36</a>上穩定使用了。<em>[嗚喔~群眾都瘋狂了！]</em></p>
 
-<p><code>Object.observe()</code>, part of a future ECMAScript standard, is a method for asynchronously observing changes to JavaScript objects...without the need for a separate library. It allows an observer to receive a time-ordered sequence of change records which describe the set of changes which took place to a set of observed objects.</p>
+<p><code>Object.observe()</code>, 身為ECMAScript標準的一部分，不需要其他的函式庫的支援就能夠非同步的觀察JavaScript物件的改變。 它允許觀察者接受一個以時間排序的改變記錄，這個記錄描述了一群被觀察的物件的集合。</p>
 
 <pre class="prettyprint">
-// Let's say we have a model with data
+// 假設我們有一個model儲存著資料
 var model = {};
 
-// Which we then observe
+// 然後我們觀察(observe)它
 Object.observe(model, function(changes){
 
-    // This asynchronous callback runs
+    // 執行這個非同步的回呼(callback)
     changes.forEach(function(change) {
 
-        // Letting us know what changed
+        // 讓我們知道什麼改變了
         console.log(change.type, change.name, change.oldValue);
     });
 
 });
 </pre>
 
-<p>Anytime a change is made, it gets reported:</p>
+<p>每次有什麼改變，就會回報:</p>
 
 <p><img src="image_0.png"  /></p>
 
-<p>With <code>Object.observe()</code> (I like to call it O.o() or Oooooooo), you can implement two-way data-binding <a href="http://bitworking.org/news/2014/05/zero_framework_manifesto">without the need for a framework</a>.</p>
+<p>你可以透過 <code>Object.observe()</code> (我喜歡叫它 O.o() 或是 Oooooooo)來實作two-way的資料綁定，<a href="http://bitworking.org/news/2014/05/zero_framework_manifesto">而且不需要framework的支援</a>。</p>
 
-<p>That’s not to say you shouldn’t use one. For large projects with complicated business logic, opinionated frameworks are invaluable and you should continue to use them. They simplify the orientation of new developers, require less code maintenance and impose patterns on how to achieve common tasks. When you don’t need one, you can use smaller, more focused libraries like <a href="http://polymer-project.org">Polymer</a> (which already take advantage of O.o()).</p>
+<p>這不是說你就不要使用framework了，當你在建置有複雜邏輯的大型專案時，That’s not to say you shouldn’t use one. For large projects with complicated business logic, opinionated frameworks are invaluable and you should continue to use them. They simplify the orientation of new developers, require less code maintenance and impose patterns on how to achieve common tasks. When you don’t need one, you can use smaller, more focused libraries like <a href="http://polymer-project.org">Polymer</a> (which already take advantage of O.o()).</p>
 
 <p>Even if you find yourself heavily using a framework or MV* library, O.o() has the potential to provide them with some healthy performance improvements, with a faster, simpler implementation whilst keeping the same API. For example, last year Angular <a href="https://mail.mozilla.org/pipermail/es-discuss/2012-September/024978.html">found </a>that in a benchmark where changes were being made to a model, dirty-checking took 40ms per update and O.o() took 1-2ms per update (an improvement of 20-40x faster).</p>
 
