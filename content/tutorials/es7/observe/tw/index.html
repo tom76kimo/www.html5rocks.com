@@ -36,17 +36,17 @@ Object.observe(model, function(changes){
 
 <p>你可以透過 <code>Object.observe()</code> (我喜歡叫它 O.o() 或是 Oooooooo)來實作two-way的資料綁定，<a href="http://bitworking.org/news/2014/05/zero_framework_manifesto">而且不需要framework的支援</a>。</p>
 
-<p>這不是說你就不要使用framework了，當你在建置有複雜邏輯的大型專案時，That’s not to say you shouldn’t use one. For large projects with complicated business logic, opinionated frameworks are invaluable and you should continue to use them. They simplify the orientation of new developers, require less code maintenance and impose patterns on how to achieve common tasks. When you don’t need one, you can use smaller, more focused libraries like <a href="http://polymer-project.org">Polymer</a> (which already take advantage of O.o()).</p>
+<p>這不是說你就不要使用framework了，當你在建置有複雜邏輯的大型專案時，好用的framework還是無可取代而且你也應該繼續用下去。 這些framework簡化了新開發者的環境，只需要維護少量的程式碼，並且利用一些既有的模式來達成常見的工作的需要。 如果你不需要framework，你可以使用一些更加重點(focused)的函式庫例如 <a href="http://polymer-project.org">Polymer</a> (已經包含使用了O.o()的各項優點)。</p>
 
-<p>Even if you find yourself heavily using a framework or MV* library, O.o() has the potential to provide them with some healthy performance improvements, with a faster, simpler implementation whilst keeping the same API. For example, last year Angular <a href="https://mail.mozilla.org/pipermail/es-discuss/2012-September/024978.html">found </a>that in a benchmark where changes were being made to a model, dirty-checking took 40ms per update and O.o() took 1-2ms per update (an improvement of 20-40x faster).</p>
+<p>儘管你已經很依賴使用一些framework或是MV*的函示庫，O.o()還是可以使用以上既有工具的API，並且優化、簡化使用上的效能的潛力。 舉個例子，去年Angular<a href="https://mail.mozilla.org/pipermail/es-discuss/2012-September/024978.html">發現</a>在benchmark的測試下，觀察模組資料的改變所使用的骯髒檢查(dirty-checking)每次會耗費40ms的時間，但O.o()只會耗費1至2ms的時間(快了將近20至40ms)。</p>
 
-<p>Data-binding without the need for tons of complicated code also means you no longer have to poll for changes, so longer battery life!</p>
+<p>這樣的資料綁定不需要一堆複雜的程式碼，這也意味著你不需要去輪詢(poll)資料的改變，也延長了電池的使用時間。</p>
 
 <p>If you're already sold on O.o(), skip-ahead to the feature <a href="#toc-intro-oo">introduction</a>, or read ahead for more on the problems it solves.</p>
 
-<h2 id="toc-what-are-we-observing">What do we want to observe?</h2>
+<h2 id="toc-what-are-we-observing">我們要觀察什麼？</h2>
 
-<p>When we’re talking about data observation, we’re usually referring to keeping an eye out for some specific types of changes:</p>
+<p>當我們談到要觀察資料，有幾種特定的改變是我們通常會想要觀察的:</p>
 
 <ul>
 <li><p>Changes to raw JavaScript objects</p></li>
